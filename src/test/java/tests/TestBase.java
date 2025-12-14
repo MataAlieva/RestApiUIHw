@@ -24,7 +24,7 @@ public class TestBase {
         Configuration.pageLoadStrategy = "eager";
         browser = System.getProperty("browser", "chrome");
         browserSize = System.getProperty("browser_size", "1920x1080");
-        browserVersion = System.getProperty("browser_version", "122.0");
+        browserVersion = System.getProperty("browser_version", "128.0");
         String remoteUrl = System.getProperty("remote_url");
         if (remoteUrl != null) {
             String auth = System.getProperty("auth");
