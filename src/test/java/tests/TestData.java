@@ -1,8 +1,8 @@
 package tests;
 
 public class TestData {
-        public String username = "Testtest1!";
-        public String password = "Testtest1!";
-        public String isbn = "9781449325862";
-        public String title = "Git Pocket Guide";
+        public static String username = "Testtest1!";
+        public static String password = "Testtest1!";
+        public static String isbn = "9781449325862";
+        public static String title = "Git Pocket Guide";
     }

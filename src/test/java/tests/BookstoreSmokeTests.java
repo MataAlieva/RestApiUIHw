@@ -6,25 +6,27 @@ import org.junit.jupiter.api.Test;
 import pages.UserProfilePage;
 import api.BookstoreApiV1;
 
-public class BookstoreSmokeTests extends TestData{
+import static tests.TestData.*;
+
+public class BookstoreSmokeTests extends TestBase {
 
     private final BookstoreApiV1 apiService = new BookstoreApiV1();
     private final UserProfilePage userProfilePage = new UserProfilePage();
 
     @Test
     void verifyBookDeletionAfterApiAdditionTest() {
-        AuthResponseModel sessionData = apiService.authenticateUser(username, password);
+        AuthResponseModel sessionData = apiService.authenticateUser(TestData.username, TestData.password);
         apiService.clearAllBooks(sessionData);
-        apiService.addBookToCollection(sessionData, isbn);
+        apiService.addBookToCollection(sessionData, TestData.isbn);
 
         SessionManager.setBrowserSessionCookies(sessionData, username);
 
         userProfilePage.openPage()
-                .checkUserName(username)
-                .checkBookName(title)
+                .checkUserName(TestData.username)
+                .checkBookName(TestData.title)
                 .clickOnDeleteButton()
                 .closeModalOk()
                 .confirmModalWindow()
-                .checkList(title);
+                .checkList(TestData.title);
     }
 }

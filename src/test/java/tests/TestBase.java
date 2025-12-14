@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import extensions.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -15,7 +16,7 @@ import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 
-public class TasteBase {
+public class TestBase {
     @BeforeAll
     static void setUp() {
         RestAssured.baseURI = "https://demoqa.com";
@@ -40,10 +41,12 @@ public class TasteBase {
 
     @AfterEach
     void shutDown(){
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-        closeWebDriver();
+        if (WebDriverRunner.hasWebDriverStarted()) {
+            Attach.screenshotAs("Last screenshot");
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+            Attach.addVideo();
+            closeWebDriver();
+        }
     }
 }
